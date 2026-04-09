@@ -187,12 +187,26 @@
         }
       }
 
+      @keyframes pulse-soft {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
       .float-anim {
         animation: float 6s ease-in-out infinite;
       }
 
       .float-anim-reverse {
         animation: floatReverse 7s ease-in-out infinite;
+      }
+
+      .pulse-soft {
+        animation: pulse-soft 4s ease-in-out infinite;
       }
 
       /* Reveal animations */
@@ -514,6 +528,17 @@
       ::-webkit-scrollbar-thumb:hover {
         background: var(--muted);
       }
+
+      /* Ingredients Card Animation */
+      .ingredient-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .ingredient-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
     </style>
   </head>
   <body>
@@ -545,7 +570,6 @@
           <div class="hidden md:flex items-center gap-8">
             <a href="#about" class="nav-link">About</a>
             <a href="#products" class="nav-link">Products</a>
-            <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#contact" class="nav-link">Contact</a>
             <a href="#order" class="btn-primary text-sm">Order Now</a>
           </div>
@@ -609,11 +633,6 @@
               >Products</a
             >
             <a
-              href="#gallery"
-              class="text-lg font-medium text-zobo-deep hover:text-zobo-rich transition-colors"
-              >Gallery</a
-            >
-            <a
               href="#contact"
               class="text-lg font-medium text-zobo-deep hover:text-zobo-rich transition-colors"
               >Contact</a
@@ -624,286 +643,439 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION (REDESIGNED) -->
     <section
       class="relative min-h-screen flex items-center pt-20 overflow-hidden"
     >
-      <!-- Background blobs -->
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
+      <!-- Background Gradients & Blobs -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-cream-50 to-cream-200 -z-20"
+      ></div>
+      <div class="blob blob-1 opacity-30 animate-pulse"></div>
+      <div class="blob blob-2 opacity-30" style="top: 60%; left: 10%"></div>
 
-      <!-- Floating fruit decorations -->
-      <div class="fruit-deco top-32 left-[10%] float-anim hidden lg:block">
-        <svg
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="none"
-          opacity="0.6"
-        >
-          <circle cx="30" cy="30" r="25" fill="#F5A623" />
-          <path
-            d="M30 5C30 5 35 15 30 20"
-            stroke="#5CB85C"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-        </svg>
-      </div>
+      <!-- Big Background Text -->
       <div
-        class="fruit-deco top-48 right-[15%] float-anim-reverse hidden lg:block"
-        style="animation-delay: -2s"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0"
+      >
+        <h2
+          class="text-[12vw] leading-[0.8] font-display font-black text-zobo-deep/5 whitespace-nowrap select-none"
+        >
+          PERFECT<br />SUMMER<br />JUICE
+        </h2>
+      </div>
+
+      <!-- Curved Flowing Lines (SVG) -->
+      <div
+        class="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden"
       >
         <svg
-          width="50"
-          height="50"
-          viewBox="0 0 50 50"
-          fill="none"
-          opacity="0.5"
+          class="absolute top-[-10%] right-[-10%] w-[80%] h-[120%] opacity-20 text-zobo-light float-anim-reverse"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <ellipse cx="25" cy="28" rx="20" ry="18" fill="#D4456A" />
-          <ellipse cx="25" cy="28" rx="15" ry="13" fill="#A61B47" />
           <path
-            d="M25 10V5L28 8"
-            stroke="#5CB85C"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
-      </div>
-      <div
-        class="fruit-deco bottom-32 left-[20%] float-anim hidden lg:block"
-        style="animation-delay: -4s"
-      >
-        <svg
-          width="45"
-          height="45"
-          viewBox="0 0 45 45"
-          fill="none"
-          opacity="0.5"
-        >
-          <circle cx="22" cy="22" r="18" fill="#FFCC5C" />
-          <path
-            d="M22 4C22 4 26 12 22 16"
-            stroke="#5CB85C"
-            stroke-width="2"
-            stroke-linecap="round"
+            fill="currentColor"
+            d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-5.3C93.5,8.6,82.2,21.5,70.9,32.1C59.6,42.7,48.3,51,36.4,57.6C24.5,64.2,12,69.1,-0.4,69.8C-12.8,70.5,-26.3,67,-38.8,60.3C-51.3,53.6,-62.8,43.7,-71.2,31.4C-79.6,19.1,-84.9,4.4,-82.3,-9.1C-79.7,-22.6,-69.2,-34.9,-57.1,-43.8C-45,-52.7,-31.3,-58.2,-18.4,-65.8C-5.5,-73.4,6.6,-83.1,19.4,-84.1C32.2,-85.1,45.8,-77.4,44.7,-76.4Z"
+            transform="translate(100 100)"
           />
         </svg>
       </div>
 
       <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 w-full"
       >
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <!-- Text Content -->
-          <div class="text-center lg:text-left order-2 lg:order-1">
-            <div class="reveal visible">
-              <span class="tagline-badge inline-block mb-6"
-                >Your go-to spot for refreshing natural drinks</span
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- LEFT: Large Bold Text -->
+          <div class="text-left order-2 lg:order-1 relative">
+            <div class="inline-block mb-6 reveal">
+              <span
+                class="bg-fruit-green/10 text-fruit-green px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase"
               >
+                100% Natural Ingredients
+              </span>
             </div>
 
             <h1
-              class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-zobo-deep leading-tight reveal visible delay-1"
+              class="font-display text-6xl sm:text-7xl lg:text-8xl font-bold text-zobo-deep leading-[0.9] reveal delay-1"
             >
-              Fresh.<br />
-              <span class="text-zobo-rich">Fruity.</span><br />
-              Refreshing.
+              FRESH.<br />
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-zobo-rich to-zobo-light"
+                >FRUITY.</span
+              ><br />
+              ZOBO.
             </h1>
 
-            <p
-              class="mt-6 text-lg sm:text-xl text-zobo-deep/70 max-w-xl mx-auto lg:mx-0 reveal visible delay-2"
-            >
-              Experience the authentic taste of our handcrafted zobo drink, made
-              from premium hibiscus flowers and natural spices. A perfect blend
-              of health and flavor.
+            <p class="mt-8 text-xl text-zobo-deep/70 max-w-lg reveal delay-2">
+              Experience the vibrant taste of nature. Sips made with love,
+              packed with energy, and crafted for the perfect summer vibe.
             </p>
 
-            <div
-              class="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start reveal visible delay-3"
-            >
-              <a href="#order" class="btn-primary">Order Now</a>
-              <a href="#products" class="btn-secondary">View Products</a>
+            <div class="mt-10 flex flex-wrap gap-4 reveal delay-3">
+              <a
+                href="#order"
+                class="btn-primary text-lg px-10 py-4 shadow-xl shadow-zobo-rich/30"
+              >
+                Order Now
+              </a>
+              <a
+                href="#ingredients"
+                class="flex items-center gap-2 text-zobo-deep font-semibold hover:text-zobo-rich transition-colors group"
+              >
+                View Ingredients
+                <svg
+                  class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  ></path>
+                </svg>
+              </a>
             </div>
 
-            <!-- Stats -->
+            <!-- Floating Element Left -->
             <div
-              class="flex gap-8 mt-12 justify-center lg:justify-start reveal visible delay-4"
+              class="absolute top-10 -left-10 lg:-left-20 w-24 h-24 bg-fruit-orange rounded-full blur-3xl opacity-40 animate-pulse"
+            ></div>
+          </div>
+
+          <!-- RIGHT: Hero Image with Floating Fruits -->
+          <div
+            class="relative order-1 lg:order-2 flex justify-center items-center min-h-[500px] lg:min-h-[600px]"
+          >
+            <!-- Bottle Image -->
+            <div class="relative z-20 reveal-scale delay-2">
+              <!-- Using the provided bottle image -->
+              <img
+                src="img/Gemini_Generated_Image_ru2rwuru2rwuru2r-removebg-preview.png"
+                alt="Luvea Naturals Zobo Drink Bottle"
+                class="max-w-full h-auto max-h-[600px] w-auto object-contain drop-shadow-2xl pulse-soft filter saturate-110"
+              />
+            </div>
+
+            <!-- Floating Fruit: Orange Slice -->
+            <div class="fruit-deco top-10 right-10 lg:right-0 float-anim z-30">
+              <div
+                class="w-20 h-20 lg:w-28 lg:h-28 bg-fruit-orange rounded-full shadow-lg flex items-center justify-center border-4 border-orange-200 relative overflow-hidden"
+              >
+                <!-- White inner part -->
+                <div
+                  class="absolute w-2/3 h-2/3 bg-white/40 rounded-full"
+                ></div>
+                <!-- Segments -->
+                <div class="absolute w-full h-1 bg-white/30 rotate-45"></div>
+                <div class="absolute w-full h-1 bg-white/30 -rotate-45"></div>
+                <div class="absolute w-1 h-full bg-white/30"></div>
+              </div>
+            </div>
+
+            <!-- Floating Fruit: Hibiscus Flower -->
+            <div
+              class="fruit-deco bottom-20 left-0 lg:-left-10 float-anim-reverse z-30"
+              style="animation-delay: 1s"
             >
-              <div class="text-center">
+              <svg
+                width="100"
+                height="100"
+                viewBox="0 0 100 100"
+                fill="none"
+                class="drop-shadow-xl"
+              >
+                <path
+                  d="M50 50C50 50 65 30 80 40C95 50 85 75 70 80C55 85 50 50 50 50Z"
+                  fill="#D4456A"
+                />
+                <path
+                  d="M50 50C50 50 70 65 60 80C50 95 25 85 20 70C15 55 50 50 50 50Z"
+                  fill="#A61B47"
+                />
+                <path
+                  d="M50 50C50 50 35 70 20 60C5 50 15 25 30 20C45 15 50 50 50 50Z"
+                  fill="#D4456A"
+                />
+                <path
+                  d="M50 50C50 50 30 35 40 20C50 5 75 15 80 30C85 45 50 50 50 50Z"
+                  fill="#A61B47"
+                />
+                <circle cx="50" cy="50" r="10" fill="#F5A623" />
+              </svg>
+            </div>
+
+            <!-- Floating Fruit: Pineapple Slice (Simplified) -->
+            <div
+              class="fruit-deco top-1/2 right-[-20px] float-anim z-10 hidden lg:block"
+              style="animation-delay: 2s"
+            >
+              <div
+                class="w-16 h-20 bg-fruit-mango rounded-xl border-2 border-yellow-300 shadow-lg relative flex items-center justify-center overflow-hidden"
+              >
                 <div
-                  class="font-display text-3xl sm:text-4xl font-bold text-zobo-rich"
-                >
-                  500+
-                </div>
-                <div class="text-sm text-zobo-deep/60">Happy Customers</div>
+                  class="absolute inset-0 opacity-30"
+                  style="
+                    background-image: radial-gradient(
+                      #f5a623 2px,
+                      transparent 2px
+                    );
+                    background-size: 8px 8px;
+                  "
+                ></div>
+                <div class="w-full h-[1px] bg-yellow-400/50 rotate-45"></div>
+                <div class="w-full h-[1px] bg-yellow-400/50 -rotate-45"></div>
               </div>
-              <div class="text-center">
-                <div
-                  class="font-display text-3xl sm:text-4xl font-bold text-fruit-orange"
-                >
-                  100%
-                </div>
-                <div class="text-sm text-zobo-deep/60">Natural</div>
+            </div>
+
+            <!-- Floating Leaf -->
+            <div
+              class="fruit-deco bottom-10 right-20 float-anim z-20 hidden lg:block"
+            >
+              <svg
+                width="60"
+                height="60"
+                viewBox="0 0 60 60"
+                fill="none"
+                class="drop-shadow-md"
+              >
+                <path
+                  d="M30 60C30 60 10 40 10 20C10 5 20 0 30 0C40 0 50 5 50 20C50 40 30 60 30 60Z"
+                  fill="#5CB85C"
+                />
+                <path d="M30 60L30 10" stroke="#3E8E41" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce z-20"
+      >
+        <span
+          class="text-xs font-bold uppercase tracking-widest text-zobo-deep/40"
+          >Scroll</span
+        >
+        <div
+          class="w-[1px] h-12 bg-gradient-to-b from-zobo-deep/40 to-transparent"
+        ></div>
+      </div>
+    </section>
+
+    <!-- NEW INGREDIENTS SECTION -->
+    <section
+      id="ingredients"
+      class="py-20 lg:py-32 bg-cream-50 relative overflow-hidden"
+    >
+      <!-- Decorative Background Blobs -->
+      <div class="blob blob-2 opacity-20" style="top: 10%; left: -5%"></div>
+      <div class="blob blob-1 opacity-20" style="top: 10%; right: -5%"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16 reveal">
+          <span
+            class="text-fruit-orange font-bold tracking-widest uppercase text-sm"
+            >Pure & Natural</span
+          >
+          <h2
+            class="font-display text-4xl md:text-5xl font-bold text-zobo-deep mt-2"
+          >
+            INGREDIENTS
+          </h2>
+          <div class="w-24 h-1 bg-zobo-rich mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+          <!-- Left Column: Ingredients -->
+          <div class="space-y-4 reveal-left">
+            <!-- Item 1 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 text-xl"
+              >
+                💧
               </div>
-              <div class="text-center">
-                <div
-                  class="font-display text-3xl sm:text-4xl font-bold text-fruit-green"
-                >
-                  3+
-                </div>
-                <div class="text-sm text-zobo-deep/60">Flavors</div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Water
+                </h4>
+                <p class="text-sm text-gray-500">Pure filtered water base</p>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-500 text-xl"
+              >
+                🌺
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Hibiscus Petals
+                </h4>
+                <p class="text-sm text-gray-500">
+                  Rich in antioxidants & color
+                </p>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600 text-xl"
+              >
+                🍍
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Pineapple
+                </h4>
+                <p class="text-sm text-gray-500">
+                  Tropical sweetness & enzymes
+                </p>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 text-xl"
+              >
+                🍊
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Orange
+                </h4>
+                <p class="text-sm text-gray-500">Citrus burst of Vitamin C</p>
               </div>
             </div>
           </div>
 
+          <!-- Center Column: Bottle Image -->
+          <div
+            class="relative flex justify-center py-8 lg:py-0 reveal-scale delay-2"
+          >
+            <!-- Background Glow -->
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-zobo-light/30 to-fruit-orange/20 rounded-full blur-3xl transform scale-75"
+            ></div>
+
+            <!-- Image Container -->
+            <div class="relative z-10 w-full max-w-sm mx-auto">
+              <img
+                src="img/Gemini_Generated_Image_ru2rwuru2rwuru2r-removebg-preview.png"
+                alt="Luvea Zobo Ingredients Display"
+                class="w-full h-auto object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
+          <!-- Right Column: Ingredients -->
+          <div class="space-y-4 reveal-left delay-1">
+            <!-- Item 5 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 text-xl"
+              >
+                🫚
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Ginger
+                </h4>
+                <p class="text-sm text-gray-500">Spicy kick & digestion aid</p>
+              </div>
+            </div>
+            <!-- Item 6 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 text-xl"
+              >
+                🍠
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Beetroot
+                </h4>
+                <p class="text-sm text-gray-500">Earthy flavor & rich color</p>
+              </div>
+            </div>
+            <!-- Item 7 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-800 text-xl"
+              >
+                🪵
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Cinnamon
+                </h4>
+                <p class="text-sm text-gray-500">Warm aroma & sweetness</p>
+              </div>
+            </div>
+            <!-- Item 8 -->
+            <div
+              class="ingredient-card bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-900 text-xl"
+              >
+                🥥
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-zobo-deep text-lg">
+                  Clove
+                </h4>
+                <p class="text-sm text-gray-500">Aromatic depth & spice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="relative min-h-screen flex items-center pt-20 overflow-hidden"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative z-10"
+      >
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <!-- Hero Image/Illustration -->
           <div class="relative order-1 lg:order-2 reveal-scale visible">
             <div class="relative w-full max-w-md mx-auto">
-              <!-- Main drink illustration -->
-              <div class="relative z-10">
+              <div
+                class="aspect-square rounded-3xl bg-gradient-to-br from-fruit-orange/20 via-zobo-light/10 to-fruit-green/20 p-3 overflow-hidden"
+              >
                 <div
-                  class="aspect-[3/4] rounded-3xl bg-gradient-to-br from-zobo-rich via-zobo-deep to-zobo-light p-6 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
+                  class="h-full w-full rounded-2xl overflow-hidden shadow-xl relative"
                 >
-                  <div
-                    class="h-full rounded-2xl bg-gradient-to-br from-zobo-light/30 to-transparent flex flex-col items-center justify-center"
-                  >
-                    <!-- Drink glass illustration -->
-                    <svg
-                      width="140"
-                      height="200"
-                      viewBox="0 0 140 200"
-                      fill="none"
-                      class="drop-shadow-lg"
-                    >
-                      <!-- Glass -->
-                      <path
-                        d="M20 40C20 35 25 30 35 30H105C115 30 120 35 120 40V160C120 175 105 185 70 185C35 185 20 175 20 160V40Z"
-                        fill="url(#glassGrad)"
-                        stroke="rgba(255,255,255,0.3)"
-                        stroke-width="2"
-                      />
-                      <!-- Liquid -->
-                      <path
-                        d="M25 50C25 45 30 42 40 42H100C110 42 115 45 115 50V155C115 168 100 177 70 177C40 177 25 168 25 155V50Z"
-                        fill="url(#liquidGrad)"
-                      />
-                      <!-- Bubbles -->
-                      <circle
-                        cx="45"
-                        cy="80"
-                        r="5"
-                        fill="rgba(255,255,255,0.3)"
-                      >
-                        <animate
-                          attributeName="cy"
-                          values="80;60;80"
-                          dur="3s"
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      <circle
-                        cx="85"
-                        cy="100"
-                        r="4"
-                        fill="rgba(255,255,255,0.25)"
-                      >
-                        <animate
-                          attributeName="cy"
-                          values="100;70;100"
-                          dur="4s"
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      <circle
-                        cx="60"
-                        cy="130"
-                        r="3"
-                        fill="rgba(255,255,255,0.2)"
-                      >
-                        <animate
-                          attributeName="cy"
-                          values="130;90;130"
-                          dur="3.5s"
-                          repeatCount="indefinite"
-                        />
-                      </circle>
-                      <!-- Straw -->
-                      <rect
-                        x="65"
-                        y="10"
-                        width="8"
-                        height="100"
-                        rx="4"
-                        fill="#F5A623"
-                      />
-                      <rect
-                        x="67"
-                        y="10"
-                        width="2"
-                        height="100"
-                        fill="rgba(255,255,255,0.3)"
-                      />
-                      <!-- Mint leaf -->
-                      <path
-                        d="M95 45C95 45 110 50 110 60C110 70 95 75 95 75C95 75 80 70 80 60C80 50 95 45 95 45Z"
-                        fill="#5CB85C"
-                      />
-                      <path
-                        d="M95 50V70"
-                        stroke="rgba(255,255,255,0.3)"
-                        stroke-width="1"
-                      />
-                      <!-- Glass rim -->
-                      <ellipse
-                        cx="70"
-                        cy="32"
-                        rx="45"
-                        ry="8"
-                        fill="rgba(255,255,255,0.1)"
-                        stroke="rgba(255,255,255,0.4)"
-                        stroke-width="1"
-                      />
-                      <defs>
-                        <linearGradient
-                          id="glassGrad"
-                          x1="20"
-                          y1="30"
-                          x2="120"
-                          y2="185"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop
-                            offset="0%"
-                            stop-color="rgba(255,255,255,0.2)"
-                          />
-                          <stop
-                            offset="100%"
-                            stop-color="rgba(255,255,255,0.05)"
-                          />
-                        </linearGradient>
-                        <linearGradient
-                          id="liquidGrad"
-                          x1="70"
-                          y1="42"
-                          x2="70"
-                          y2="177"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop offset="0%" stop-color="#D4456A" />
-                          <stop offset="50%" stop-color="#A61B47" />
-                          <stop offset="100%" stop-color="#8B1538" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <p
-                      class="mt-6 font-display text-2xl text-white/90 font-semibold"
-                    >
-                      Classic Zobo
-                    </p>
-                    <p class="text-white/60 text-sm">Hibiscus Flower Drink</p>
-                  </div>
+                  <img
+                    src="img/Gemini_Generated_Image_7ih50t7ih50t7ih5.png"
+                    alt="Luvea Naturals hibiscus flower - the core ingredient in our zobo drinks"
+                    class="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
@@ -927,7 +1099,7 @@
                     </svg>
                   </div>
                   <span class="text-sm font-medium text-zobo-deep"
-                    >100% Natural</span
+                    >No Preservatives</span
                   >
                 </div>
               </div>
@@ -954,122 +1126,13 @@
                     </svg>
                   </div>
                   <span class="text-sm font-medium text-zobo-deep"
-                    >Customer Favorite</span
+                    >Premium Ingredients</span
                   >
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Scroll indicator -->
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-60"
-      >
-        <span class="text-sm text-zobo-deep">Scroll to explore</span>
-        <div
-          class="w-6 h-10 rounded-full border-2 border-zobo-deep/30 flex justify-center pt-2"
-        >
-          <div class="w-1.5 h-3 bg-zobo-deep/50 rounded-full animate-bounce" />
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 sm:py-32 relative overflow-hidden">
-      <div class="blob blob-3"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <!-- About Image -->
-          <div class="reveal-left">
-            <div class="relative">
-              <div
-                class="aspect-square rounded-3xl bg-gradient-to-br from-fruit-orange/20 via-zobo-light/10 to-fruit-green/20 p-8 overflow-hidden"
-              >
-                <div
-                  class="h-full rounded-2xl bg-white shadow-xl flex items-center justify-center relative overflow-hidden"
-                >
-                  <!-- Decorative pattern -->
-                  <div class="absolute inset-0 opacity-5">
-                    <svg
-                      width="100%"
-                      height="100%"
-                      viewBox="0 0 100 100"
-                      preserveAspectRatio="none"
-                    >
-                      <pattern
-                        id="fruitPattern"
-                        x="0"
-                        y="0"
-                        width="20"
-                        height="20"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <circle cx="10" cy="10" r="2" fill="#A61B47" />
-                      </pattern>
-                      <rect
-                        width="100%"
-                        height="100%"
-                        fill="url(#fruitPattern)"
-                      />
-                    </svg>
-                  </div>
-
-                  <!-- About illustration -->
-                  <div class="text-center p-8 relative z-10">
-                    <div
-                      class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-zobo-rich to-zobo-light flex items-center justify-center"
-                    >
-                      <svg
-                        width="48"
-                        height="48"
-                        viewBox="0 0 48 48"
-                        fill="none"
-                      >
-                        <path
-                          d="M24 4C22 4 20 6 20 6L16 12V16C12 18 8 24 8 32C8 40 16 44 24 44C32 44 40 40 40 32C40 24 36 18 32 16V12L28 6C28 6 26 4 24 4Z"
-                          fill="white"
-                          opacity="0.9"
-                        />
-                        <circle
-                          cx="18"
-                          cy="26"
-                          r="3"
-                          fill="rgba(166,27,71,0.3)"
-                        />
-                        <circle
-                          cx="28"
-                          cy="30"
-                          r="2"
-                          fill="rgba(166,27,71,0.2)"
-                        />
-                      </svg>
-                    </div>
-                    <h3
-                      class="font-display text-2xl font-bold text-zobo-deep mb-2"
-                    >
-                      Our Story
-                    </h3>
-                    <p class="text-zobo-deep/60 text-sm">
-                      From kitchen experiments to your favorite refreshment
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Decorative elements -->
-              <div
-                class="absolute -top-6 -right-6 w-24 h-24 bg-fruit-orange/20 rounded-full blur-xl"
-              />
-              <div
-                class="absolute -bottom-6 -left-6 w-32 h-32 bg-fruit-green/20 rounded-full blur-xl"
-              />
-            </div>
-          </div>
-
-          <!-- About Content -->
+          <!-- Text Content -->
           <div class="reveal">
             <span class="tagline-badge inline-block mb-4">Our Story</span>
             <h2
@@ -1613,195 +1676,6 @@
       </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 sm:py-32 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16 reveal">
-          <span class="tagline-badge inline-block mb-4">Gallery</span>
-          <h2
-            class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-zobo-deep"
-          >
-            Moments of Refreshment
-          </h2>
-          <p class="mt-4 text-zobo-deep/60 text-lg max-w-2xl mx-auto">
-            See how our customers enjoy their favorite drinks
-          </p>
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-zobo-rich to-zobo-light reveal delay-1"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-fruit-orange to-fruit-mango reveal delay-2 md:row-span-2"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="80"
-                height="80"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-fruit-green to-fruit-lime reveal delay-3"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-zobo-light to-zobo-rich reveal delay-4"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-fruit-mango to-zobo-light reveal delay-5"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-fruit-lime to-fruit-green reveal delay-1 md:col-span-2"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="80"
-                height="80"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-zobo-deep to-zobo-rich reveal delay-2"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-
-          <div
-            class="gallery-item aspect-square bg-gradient-to-br from-fruit-orange to-zobo-light reveal delay-3"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-white/80"
-            >
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Order Section -->
     <section
       id="order"
@@ -1831,7 +1705,7 @@
             <!-- Contact Options -->
             <div class="mt-8 space-y-4">
               <a
-                href="https://wa.me/2348000000000?text=Hi!%20I'd%20like%20to%20order%20Zobo%20Fresh%20drinks"
+                href="https://wa.me/234708446884?text=Hi!%20I'd%20like%20to%20order%20Zobo%20Fresh%20drinks"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="whatsapp-btn w-full justify-center"
@@ -1871,7 +1745,7 @@
                 <div>
                   <p class="text-sm text-zobo-deep/60">Call us directly</p>
                   <a
-                    href="tel:+2348000000000"
+                    href="tel:+234 707 844 6884"
                     class="font-semibold text-zobo-deep hover:text-zobo-rich transition-colors"
                     >+234 707 844 6884</a
                   >
@@ -2135,7 +2009,7 @@
               Phone
             </h3>
             <a
-              href="tel:+2348000000000"
+              href="tel:+234 707 844 6884"
               class="text-zobo-deep/60 hover:text-zobo-rich transition-colors"
               >+234 707 844 6884</a
             >
@@ -2309,7 +2183,7 @@
               <li>Lagos, Nigeria</li>
               <li>
                 <a
-                  href="tel:+2348000000000"
+                  href="tel:+234 707 844 6884"
                   class="hover:text-white transition-colors"
                   >+234 707 844 6884</a
                 >
@@ -2349,7 +2223,7 @@
 
     <!-- Floating WhatsApp Button -->
     <a
-      href="https://wa.me/2348000000000?text=Hi!%20I'd%20like%20to%20order%20Zobo%20Fresh%20drinks"
+      href="https://wa.me/234708446884?text=Hi!%20I'd%20like%20to%20order%20Zobo%20Fresh%20drinks"
       target="_blank"
       rel="noopener noreferrer"
       class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
@@ -2458,17 +2332,38 @@
           });
       }
 
-      // Form submission
+      // Form submission - Send to WhatsApp
       if (orderForm) {
         orderForm.addEventListener("submit", (e) => {
           e.preventDefault();
 
           // Get form data
-          const formData = new FormData(orderForm);
-          const data = Object.fromEntries(formData.entries());
+          const name = document.getElementById("name").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const product = document.getElementById("product").value;
+          const quantity = document.getElementById("quantity").value;
+          const message = document.getElementById("message").value.trim();
 
-          // Log data (in production, send to server/Google Sheets)
-          console.log("Order submitted:", data);
+          // Product name mapping
+          const productNames = {
+            "classic-zobo": "Classic Zobo",
+            "zobo-pineapple": "Zobo Pineapple Twist",
+            mixed: "Mixed Order",
+          };
+
+          // Construct WhatsApp message
+          let waMessage = `Hello! I'd like to make an inquiry:\n\n`;
+          waMessage += `*Name:* ${name}\n`;
+          waMessage += `*Phone:* ${phone}\n`;
+          if (email) waMessage += `*Email:* ${email}\n`;
+          waMessage += `*Product:* ${productNames[product] || product || "Not specified"}\n`;
+          waMessage += `*Quantity:* ${quantity}\n`;
+          if (message) waMessage += `*Additional Notes:* ${message}\n`;
+
+          // Encode and open WhatsApp
+          const waUrl = `https://wa.me/234708446884?text=${encodeURIComponent(waMessage)}`;
+          window.open(waUrl, "_blank");
 
           // Show success message
           if (formStatus) {
